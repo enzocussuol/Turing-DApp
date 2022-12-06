@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Importing css styles -->
+    <link rel="stylesheet" href="./index.css" />
+    <title>Pet dApp</title>
+  </head>
+  <body>
+    <section class="vote-section">
+      <section class="section-header">
+        <h1>Turing DApp</h1>
+      </section>
+      <!-- Form -->
+      <form>
+        <label for="nome-aluno">Nome do Aluno</label>
+        <input type="text" id="nome-aluno" />
+        <label for="qtd-turings">Quantidade de Turings</label>
+        <input type="number" id="qtd-turings" />
+        <input type="button" value="Votar" id="votar" />
+      </form>
+    </section>
+
+    <!-- Pet details section -->
+    <section class="pet-detail-section">
+      <section class="section-header">
+        <h1>Pet Details</h1>
+      </section>
+      <section class="pet-details">
+        <h3 class="pet-detail-heading">
+          Pet Name:
+          <span class="pet-data pet-detail-name"></span>
+        </h3>
+        <h3 class="pet-detail-heading">
+          Pet Owner:
+          <span class="pet-data pet-detail-owner"></span>
+        </h3>
+        <h3 class="pet-detail-heading">
+          Pet Age:
+          <span class="pet-data pet-detail-age"></span>
+        </h3>
+      </section>
+      <section class="section-footer">
+        <button class="show-pet-form-btn">Set New Pet</button>
+        <button class="refresh-pet-details-btn">Refresh</button>
+      </section>
+    </section>
+
+    <!-- Importing Ethers.js script -->
+    <script
+      src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+      type="application/javascript"
+    ></script>
+
+    <!-- Importing our javascript file -->
+    <script src="./index.js"></script>
+  </body>
+</html>
