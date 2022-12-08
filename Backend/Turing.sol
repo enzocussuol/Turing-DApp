@@ -92,7 +92,13 @@ contract Turing is ERC20 {
         votos[msg.sender].push(codinome);
     }
 
-    function endVoting() public permissaoIssueToken {
+    modifier permissaoEndVoting {
+        require(msg.sender == chaveProfessora, "[ERRO] Apenas a professora possui permiss\xC3\xA3o para realizar essa a\xC3\xA7\xC3\xA3o.");
+        require(votacaoAberta == true, "[ERRO] A vota\xC3\xA7\xC3\xA3o est\xC3\xA1 fechada.");
+
+        _;
+    }
+    function endVoting() public permissaoEndVoting {
         votacaoAberta = false;
     }
 }

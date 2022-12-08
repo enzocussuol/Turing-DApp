@@ -1,7 +1,7 @@
 let alunos = [];
 
 let turingContract;
-const Turing_Contract_Address = "0xC936b746631F9DA34A49367347a1E381016f0b0B";
+const Turing_Contract_Address = "0xa6aa912C5442EB6352c699799846328C92e4d962";
 const Turing_Contract_ABI = [
 	{
 		"inputs": [],
@@ -372,7 +372,7 @@ const Turing_Contract_ABI = [
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-]
+];
 
 /* 3. Prompt user to sign in to MetaMask */
 const provider = new ethers.providers.Web3Provider(window.ethereum, "goerli");

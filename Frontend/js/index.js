@@ -12,7 +12,7 @@ const botaoEncerrarVotacao = document.getElementById("botaoEncerrarVotacao");
 async function atualizaTurings() {
     for (const aluno of alunos) {
         turings = await turingContract.balanceOf(aluno.endereco);
-        aluno.turings = Number(turings)/(10**18);
+        aluno.turings = Number(turings) / (10 ** 18);
     }
 }
 
@@ -85,8 +85,10 @@ async function setaStatusVotacao(status) {
 }
 
 async function atualizaStatusVotacao() {
-    var status = turingContract.votacaoAberta();
-    setaStatusVotacao(status);
+    turingContract.votacaoAberta()
+        .then((status) => {
+            setaStatusVotacao(status);
+        })
 }
 
 async function votar(e) {
@@ -103,7 +105,7 @@ async function votar(e) {
     }
 
     var endereco = inputAlunoVotar.value;
-    var turings = String(Number(inputTuringsVotar.value)*(10**18));
+    var turings = String(Number(inputTuringsVotar.value) * (10 ** 18));
 
     turingContract.vote(endereco, turings)
         .then(() => {
@@ -131,13 +133,12 @@ async function mineirar(e) {
 
     var endereco = "";
     for (const aluno of alunos) {
-        console.log(aluno.apelido);
         if (inputAlunoMineirar.value == aluno.apelido) {
             endereco = aluno.endereco;
             break;
         }
     }
-    var turings = String(Number(inputTuringsMineirar.value)*(10**18));
+    var turings = String(Number(inputTuringsMineirar.value) * (10 ** 18));
 
     turingContract.issueToken(endereco, turings)
         .then(() => {
@@ -199,7 +200,7 @@ setInterval(refresh, 1000);
 botaoVotar.addEventListener("click", votar);
 botaoMineirar.addEventListener("click", mineirar);
 botaoEncerrarVotacao.addEventListener("click", encerrarVotacao);
-botaoAtualizar.addEventListener("click", function(e) {
+botaoAtualizar.addEventListener("click", function (e) {
     e.preventDefault();
     refresh();
 });
