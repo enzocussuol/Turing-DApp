@@ -9,7 +9,7 @@ contract Turing is ERC20 {
     mapping(string => address) public usuarios;
     mapping(address => string) public usuariosInvertido;
     mapping(address => string[]) votos;
-    bool votacaoAberta;
+    bool public votacaoAberta;
 
     constructor() ERC20("Turing", "TRG") {
         chaveProfessora = 0xA5095296F7fF9Bdb01c22e3E0aC974C8963378ad;
@@ -60,7 +60,7 @@ contract Turing is ERC20 {
     }
 
     modifier permissaoIssueToken {
-        require(msg.sender == chaveProfessora);
+        require(msg.sender == chaveProfessora, "[ERRO] Apenas a professora possui permiss\xC3\xA3o para realizar essa a\xC3\xA7\xC3\xA3o.");
         _;
     }
     function issueToken(address receiver, uint256 qtdSaTurings) public permissaoIssueToken {
@@ -68,9 +68,10 @@ contract Turing is ERC20 {
     }
 
     modifier permissaoVote(string memory codinome, uint256 qtdSaTurings) {
-        require(keccak256(bytes(usuariosInvertido[msg.sender])) != keccak256(bytes(""))); // Requer que o usuario seja valido
-        require(qtdSaTurings <= 2*10**18); // Requer que nao seja passado mais de 2 saTurings
-        require(votacaoAberta == true); // Requer que a votacao esteja aberta
+        require(keccak256(bytes(usuariosInvertido[msg.sender])) != keccak256(bytes("")), "[ERRO] Usu\xC3\xA1rio n\xC3\xA3o \xC3\xA9 um aluno."); // Requer que o usuario seja valido
+        require(qtdSaTurings <= 2*10**18, "[ERRO] N\xC3\xA3o \xC3\xA9 permitido votar com mais de 2 Turings."); // Requer que nao seja passado mais de 2 saTurings
+        require(votacaoAberta == true, "[ERRO] A vota\xC3\xA7\xC3\xA3o est\xC3\xA1 fechada."); // Requer que a votacao esteja aberta
+        require(usuarios[codinome] != msg.sender, "[ERRO] N\xC3\xA3o \xC3\xA9 poss\xC3\xADvel votar em si mesmo."); // Requer que o usuário vote em um aluno diferente de si mesmo
 
         // Requer que o codinome ja nao tenha sido votado pelo usuario
         bool codinomeJaFoiVotadoPeloUsuario = false;

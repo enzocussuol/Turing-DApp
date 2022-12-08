@@ -1,0 +1,31 @@
+body {
+  font-family: 'Roboto Slab', serif;
+  background-color: whitesmoke;
+}
+
+.titulo {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.titulo-votar, .titulo-mineirar {
+  margin-top:20px;
+}
+
+.subtitulo-mineirar {
+  color: rgb(160, 160, 160);
+}
+
+.titulo-atualize {
+  margin-right: 10px;
+}
+
+.div-atualizar {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+
+td, th {
+  text-align: center;
+}
