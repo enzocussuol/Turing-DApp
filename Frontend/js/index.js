@@ -12,7 +12,7 @@ const botaoEncerrarVotacao = document.getElementById("botaoEncerrarVotacao");
 async function atualizaTurings() {
     for (const aluno of alunos) {
         turings = await turingContract.balanceOf(aluno.endereco);
-        aluno.turings = Number(turings) / (10 ** 18);
+        aluno.turings = (Number(turings) / (10 ** 18)).toFixed(8).replace(/\.?0+$/,"");
     }
 }
 
@@ -188,6 +188,8 @@ function init() {
 }
 
 async function refresh() {
+    if (turingContract === undefined) return;
+
     atualizaStatusVotacao();
     atualizaTurings();
     ordenaAlunos();
